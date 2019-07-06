@@ -1,0 +1,253 @@
+-- marea n.1 / 2019-06-18 / @tidalcycles 1.0.13
+
+d1 $ jux (chop 2 . (# cut 2)) $ sound "bev*<2 4 6 8>" # cut 1 # begin (slow 16 $ range 0 0.5 rand)
+
+-- marea n.2 / 2019-06-19 / @tidalcycles 1.0.13
+
+d1 $ stack [
+  sound "[~ bd:3]*3 [bd:3 bd:2 bd:1]",
+  fast 1.5 $ jux (rev . (# room 0.1)
+                  . (# sz 0.5) . (|+ n "<4 6 7>"))
+    $ n (run 32)
+    |+| sound "sid(<7 5 13>,16)" # cut 1,
+  fast "<3 4 3 0.75>" $ arp "down"
+    $ n "<c'min'4 f'min'3>"
+    # s "supersaw"
+    # cutoff (fast 8 $ range 300 10000 rand)
+    +| crush "1 2*2 [3 2] 1" # gain 0.7 
+  ]
+
+-- marea n.3 / 2019-06-20 / @tidalcycles 1.0.13
+
+d1 $ off 0.5 (
+  (fast 2)
+    . (# note "[-12 -7]")
+    . (# cutoff
+       (slow 4 $ range 400 5000 saw))
+    . (# pan sine))
+  $ every 4 (# speed 0.5) $ slow 3
+  $ note "[0 <3 5> ~, 7 ~ 5 ~ -4]"
+  # sound "feelfx"
+  # shape 0.8 # delay 0.7 # delayfb 0.5
+  # delayt "<0.3 0.5>/2" # gain 0.6
+
+-- marea n.4 / 2019-06-21 / @tidalcycles 1.0.13
+
+d1 $ every 8 (juxBy 0.3 (rev)) $ stack [
+  struct "t [[~ t] ~] [[t t] ~] [[~ t] ~]"
+    $ sound "dr:5" # speed 0.75
+    # shape 0.7 # gain 0.72,
+  sound "hh:3(7,16,1)" # pan 0.6,
+  sound "[~ mute]/2" # n "[0 0 0 3]/8"
+    # speed 0.3 # gain 0.9,
+  sound "ab:2(<9!3 5>,16)"
+    # slow 4 (cutoff (range 400 800 sine))
+    # pan 0.3,
+  every 4 (# speed 0.5) $ degrade $ chop 24
+    $ note "-3" # sound "em2:2"
+    # gain 0.7 # pan (slow 3 sine)
+  ]
+
+-- marea n.5 / 2019-06-23 / @tidalcycles 1.0.13
+
+d1 $ stack [
+  whenmod 6 4 (# silence)
+    $ stut 5 0.3 "[0.25 0.1 0.5]/3"
+    $ arp "[thumbup thumbdown]/2"
+    $ note "[a'min'5 c'maj'5 f'maj'5 g'maj'5]/<8 4>"
+    # s "made:4" # end 0.3 # gain 0.85,
+  sound "~ sd:2 ~ sd:2" # speed "<1 0.7 1.3 0.7>"
+    # pan (slow 4 saw) # gain 0.9,
+    every 4 (>| sound
+              "[[techno:1 techno:7] 808mt]*4")
+    $ sound "[techno:7 808mt]*4" # gain 1.2
+  ] # cps 0.7
+
+-- marea n.6 / 2019-06-26 / @tidalcycles 1.0.13
+
+d1 $stack [
+  every 8 ((# speed 2) . (# pan sine))
+    $ slow 4
+    $ superimpose ((0.666 ~>) . (# note (-4)))
+    $ superimpose ((0.333 ~>) . (# note (-7)))
+    $ striateBy "[12 24 7]/3" (1/6)
+    $ sound "wind sd:3 moog" # gain "1 0.7 0.9"
+    # speed "[0.5!4 0.3]/5"
+    # lpf 700 # room 0.5 # sz 0.7,
+  slow 6 $ (0.2 ~>) $ striateBy 24 (1/6)
+    $ note "[0!3 3]/4" # sound "sundance:1" 
+    # speed "0.3" # shape 0.7 # gain 0.6
+    # bpf 500
+  ]
+
+-- marea n.7 / 2019-06-27 / @tidalcycles 1.0.13
+
+d1 $ every 7 (trunc 0.75) $ stack [
+  struct "t [~ t] [t t] [t ~ t]"
+    $ n (run 6) # sound "ades2" # gain 1.1,
+  fast 2 $ sound "[casio*<4 2 3>] oc" # pan 0.7
+    # n "<0 1> <0 1 2 3>",
+  sound "bassfoo:2(7,16)" # end 0.1 # pan 0.4,
+  sound "[rm*3]*4" # gain "0.8 0.6 0.8",
+    every 8
+    (>| note
+      "[c4(9,16), c5(9,16,1), c6(9,16,2)]")
+    $ stut 4 0.5 "[0.2 0.1 0.5]/3"
+    $ sound "superfork [~ superfork]"
+    # note "[c <e [e e]> <[g g] g> d]/4"
+    # shape 0.7
+  ] # cps (90/60/4)
+
+-- marea n.8 / 2019-06-28 / @tidalcycles 1.0.13
+
+d1 $ every 16 brak $ stack [
+  swing (slow 16 (run 4)+6) $
+  every 5 ((scramble 5) . (# speed 0.7))
+    $ every 7 rev
+    $ every 3 (trunc 0.8)
+    $ n (run 10) # s "ul" # gain 0.9,
+  sound "linnhats:1(9,16)"
+    # gain 0.7 # pan "[0.7 0.4]*4",
+  sound "kicklinn(5,16)" # shape 0.6,
+  sound "[[~ sn:2] [~ [sn:2*4]]\
+        \[~ sn:2] [~ [sn:2*8]]]/4"
+    # shape 0.3 # pan 0.6,
+  sound "808cy/4" # speed 0.3
+    # cutoff 700 # pan 0.4,
+  whenmod 4 3
+    (# sound "[trump ~ sid ~]/16")
+    $ sound "hoover:4 hoover:4*2"
+    # speed 0.25 # note "[0!7 3]/2"
+    # cut 1 # crush 4
+    # cutoff 700 # pan saw
+  ] # cps (160/60/4)
+
+-- marea n.9 / 2019-07-01 / @tidalcycles 1.0.13
+
+d1 $ every 8 (stutWith 4 0.5
+              (# vowel "a a e a"))
+  $ stack [
+  palindrome $ n "0 [1 2 [4 3]]"
+    # s "808hc"
+    # shape "[0.3 0.6 0.45]/3",
+  sound "[less less:1 less:3]/2",
+    note "[0 -3]/6" # sound "sax"
+    # cut 1 # gain 0.8
+    # slow 7 (pan saw),
+  slow 10 $ n (run 20)
+    # sound "<bass bleep>" # cut 2
+    # pan rand # gain 0.7
+  ] # room 0.5 # sz 0.9
+
+-- marea n.10 / 2019-07-02 / @tidalcycles 1.0.13
+
+d1 $ stack [
+    sometimes ((# sound "superpiano")
+               . (trunc (range 0.3 1 rand)))
+    $ stut "<2 0 4>" 0.3 "<0.1 0.2 0.3 0.5>"
+    $ note (arp "[[downup diverge] pinkyup converge]/4"
+            "[c2'7sus4'24 a1'minor7'18]/<2 2 4>")
+    # sound "casio:1" # gain
+      (slow 4 $ range 0.7 0.9 tri),
+  struct "t!3 <[~ t] t*4>" $ sound "casio:2"
+    # shape 0.3 # crush 3 # gain 0.8,
+  every 8 (jux (rev . (shuffle 3)))
+      $ every 3 (|- note 4)
+      $ sound "[bass*4, [~ jazz:4]*2]"
+      # room 0.3 # sz 0.3
+      # gain 0.95,
+  striate "[6 32]*2" $ sound "[erk]/8"
+      # cutoff 800
+      # gain 0.8 # shape 0.4
+      # begin "[0.25 0.75]/16" # end "[0.5 1]/16"
+      # room 0.7 # sz 0.7
+  ] # cutoff (range 10000 50 (slow 8 saw))
+
+-- marea n.11 / 2019-07-03 / @tidalcycles 1.0.13
+
+d1 $ whenmod 8 3 (stutWith 3 (1/4)
+                  ((|* speed 0.75)
+                   . (# shape 0.5)
+                   . (|* gain 0.75)))
+  $ every 4 ((scramble 4) . (chop 2))
+  $ every 5 (jux (slow 2))
+  $ stack [
+    sound "sine:2*4",
+    stut 7 0.3 0.15 $ sound "~ ~ ravemono/3"
+      # cutoff 300 # end 0.1 # shape 0.6,
+    sound "~ <bin [bin*2 ~]>"
+      # slow 5 (n (run 5)) # cutoff 800,
+    n "0 [1 2] 3 [4 5]" # sound "mouth"
+      # cutoff 2400,
+    sound "<gabba [gabba*2 ~ ~]>"
+      # cutoff 100 # gain 0.9
+      # room 0.3 # size 0.6
+  ] # cps 0.45
+
+-- marea n.12 / 2019-07-04 / @tidalcycles 1.0.13
+
+d1 $ stack [
+  slow 3 $ rarely ((# sound "superfork"))
+    $ note "<a3 cs4> f3/2" # sound "metal"
+    # room 0.5 # sz 0.7 |- note 12
+    # gain 0.8 # orbit 1 # pan "[1 0]/2",
+  sound "auto:4*4" # gain 1.2,
+  degrade $ chop 12 $ sound "em2:2"
+    # speed 0.25 # cutoff 700
+    # hcutoff 500,
+  sound "808bd:9*2 [~ 808sd:4] \
+        \808bd:9*4 [~ 808sd:3]"
+    # gain 1.1,
+  struct "[t t t [~ t]]*2"
+    $ note "<a4 cs5>/4"
+    # sound "pluck" # crush "<6 4>"
+  ] # cps (140/60/4)
+
+-- marea n.13 / 2019-07-05 / @tidalcycles 1.0.13
+
+p "marea13" $ every 4
+  (superimpose ((fast 3)
+                . (|+ note "<0 7 -5>")
+                . (|* gain 0.7)
+                . (# sound "dist")
+                . (# cut 2)))
+  $ stack [
+    every 4 (jux ((0.25 ~>)))
+      $ stutWith 4 0.5
+      (|* speed
+       (slow 13
+        $ choose [0.8, 0.7, 0.6, 0.5]))
+      $ euclid "<13 12 11>" 16
+      $ sound "hh27" # pan sine,
+    sound "[hardcore:5,\
+          \<808bd:4 808bd:5>]*4"
+      # gain "1.3 1.2 1.3 1.2"
+      # room 0.6 # sz 0.6 # orbit 1,
+    chop "<2 5 1 3>" $ sound "cosmicg"
+      # gain 0.9 # cutoff 330
+      # cut 1 # note 5,
+    sound "<808lt:2 [~ 808lt:3]>*8"
+      # gain 1.1
+  ] # leslie 0.5 
+
+-- marea n.14 / 2019-07-06 / @tidalcycles 1.0.13
+
+p "marea14" $ jux (striate "2 0 3")
+  $ stack [
+    interlace "hh:5(6,8)"
+      $ spin "<2 [3 4] 2 [4 3]>"
+      $ sound "[lt lt ~] [mt mt ~] \
+              \[lt lt ~] [ht ht ~]"
+      # gain 0.8,
+    every 8 (|+ note 7)
+      $ sound "gab:2*4"
+      # note "<-3 0>"
+      # cutoff 1000 # gain 1.1,
+    spin 2 $ spread
+      ($) [density 2, rev,
+           slow 2, striate 3,
+           (# speed "1.25")]
+      $ sound "jungle:7*16"
+      # gain (range 0.7 1.1 rand),
+    ghost "~ sn"
+  ]
