@@ -1,4 +1,5 @@
-# Maree
-## a collection of TidalCycles patterns
+# maree
+a collection of TidalCycles patterns
 
-listen: [sottoforma](https://www.instagram.com/sottoforma/)
+## listen
+[sottoforma](https://www.instagram.com/sottoforma/)
