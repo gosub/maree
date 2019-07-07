@@ -251,3 +251,23 @@ p "marea14" $ jux (striate "2 0 3")
       # gain (range 0.7 1.1 rand),
     ghost "~ sn"
   ]
+
+-- marea n.15 / 2019-07-07 / @tidalcycles 1.0.14
+
+p "marea15" $ stack [
+  sound "<ab:1 ab:2>*2" # loop "<4 3 2 6 9>"
+    # coarse "<4 8 16 24>" # room 0.5
+    # cutoff (slow 4 (range 100 1000 saw))
+    # pan rand # delay 1
+    # delayt (slow 4 sine)
+    # orbit 1 # gain 0.8,
+  every 4 (stut 2 0.9 0.2)
+    $ sound "moan(3, 8)" # speed "<1 1 2>"
+    # gain 0.6  # cutoff 300 # pan 0.3,
+  sound "moog(<3 4 2>, 8)"
+    # note "<c c c gf4>"
+    # end 0.15 # cut 1
+    # gain 0.7 # pan 0.7,
+  sound "[dr2!3 dr2:1]"
+    # room 0.2 # gain 0.8
+  ] # cps (1/6)
