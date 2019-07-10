@@ -311,3 +311,25 @@ p "marea17" $ every 7 (jux rev)
     # cutoff 1000,
   sound "~ 808sd:3/2" # hpf 1000
   ] # room 0.3 # sz 0.3
+
+-- marea n.18 / 2019-07-10 / @tidalcycles 1.0.14
+
+p "marea18" $ stack [
+  stutWith 4 0.3 (|* speed (-1))
+    $ note "<[0 2]*8 [0 3]*8>"
+    # sound "short"
+    # speed 0.1 # cutoff
+      (slow 4 (range 300 1000 sine))
+    # gain (slow 4
+            (range 1.1 0.85 tri)),
+  sound "gretsch(3,8)"
+    # n (slow 4 (choose [1,0]))
+    # speed (-1) # room 0.5
+    # orbit 1 # gain 0.9,
+  (stut 6 0.1 0.1 $ sound "haw/3"
+    # n (irand 6))
+    # pan (range 0.3 0.7 rand)
+    # cutoff 4000,
+  whenmod 4 2 (# n 2)
+    $ sound "bass3(<3!3 5>,8)"
+  ]
