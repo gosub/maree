@@ -347,3 +347,19 @@ p "marea19" $ every 7 (jux rev) $ stack [
   whenmod 8 6 (# note (-3)) $
     sound "sitar:1" # end 0.3 # speed 0.4
   ] # room 0.4 # sz 0.3 # leslie 0.9
+
+-- marea n.20 / 2019-07-12 / @tidalcycles 1.0.14
+
+p "marea20" $ every 8 (#sound "tabla2")
+  $ stack [
+  arp "down"
+    $ sound "supersquare(10,12)"
+    # note "<gs5'dim7'4 e4'min'4>"
+    # legato 0.7
+    # voice (slow 8 (range 0.2 0.8 sine))
+    # crush 4 # gain 0.8,
+  note "e3 [e3, <d4 g4 e4>]"
+    # s "supersquare"
+    # leslie 0.5 # gain 0.9,
+  sound "[bd bd?] sn:1" # shape 0.5
+  ]
