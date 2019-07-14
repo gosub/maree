@@ -388,3 +388,23 @@ p "marea21" $ stack [
     # gain 0.7
   ] # room 0.4
   # cps (80/60/4)
+
+-- marea n.22 / 2019-07-14 / @tidalcycles 1.0.14
+
+p "marea22" $ stack [
+  superimpose ((# s "xmas")
+               . (# speed 2)
+               . (slow 4 $)
+               . (|- note 24)
+               . (# cut 2)
+               . (# cutoff 500)
+               . (# pan sine)
+               . (# gain 0.9))
+    $ sometimes
+    (trunc (range 0.5 0.75 rand))
+    $ fast 2 $ note "[0 3 4 7 11 12]"
+    # s "bassfoo:2" # cut 1
+    # delay (slow 4 saw),
+  jux (# speed (-2)) $ slow 2
+    $ n (run 8) # s "dr2"
+  ]
