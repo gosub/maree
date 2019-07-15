@@ -408,3 +408,16 @@ p "marea22" $ stack [
   jux (# speed (-2)) $ slow 2
     $ n (run 8) # s "dr2"
   ]
+
+-- marea n.23 / 2019-07-15 / @tidalcycles 1.0.14
+
+p "marea23"
+  $ iter 4
+  $ juxBy 0.5 (rev . overlay (s "wobble"))
+  $ every 3 (overlay (s "electro1"))
+  $ every 2 (overlay (s "~ rm:2"))
+  $ every 7 (overlay (s "tink*6" # pan sine))
+  $ every 4 (overlay (s "sn:4(5,8)" # crush 4))
+  $ s "bd:3(6,8)"
+  # shape 0.3
+  # leslie 0.6
