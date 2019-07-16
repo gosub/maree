@@ -421,3 +421,26 @@ p "marea23"
   $ s "bd:3(6,8)"
   # shape 0.3
   # leslie 0.6
+
+-- marea n.24 / 2019-07-16 / @tidalcycles 1.0.14
+
+p "marea24" $ every 8
+  (overlay ((0.75 ~>)
+            $ s "numbers:7"
+            # speed 0.8 # gain 0.8
+            # crush 4 # cutoff 800)
+   . trunc 0.75 . rev
+   . (stut 4 0.1 0.1)) $ stack [
+  note "0!3 <-3 -3!2 -4>"
+    # s "uxay:2" # speed "0.5",
+  s "uxay*8"
+    # note "[0 0 0 <-4 -3>]/4"
+    # shape 0.3 # room 0.3
+    # orbit 1,
+  struct "t [t t] t [~ t]"
+    $ s "uxay:1" # cutoff
+    (slow 3 (range 2000 200 saw)),
+  s "ul:1(<14 12 8>,16)"
+    # hpf 5000 # gain 0.6
+    # pan (range 0.3 0.7 sine)
+  ]
