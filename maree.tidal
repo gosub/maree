@@ -444,3 +444,18 @@ p "marea24" $ every 8
     # hpf 5000 # gain 0.6
     # pan (range 0.3 0.7 sine)
   ]
+
+-- marea n.25 / 2019-07-17 / @tidalcycles 1.0.14
+
+p "marea25" $ stack [
+  fast 2 $ striate "[32 16 8 4 2]/10"
+    $ s "[blip 808mc blip:1 808mc:1]*3",
+  sound "[jazz*4, [~ <jazz:2 jazz:3>]*4]",
+  sound "~ ~ control? ~" # note (-31)
+    # begin (range 0 0.5 rand) # cut 1
+    # shape 0.3 # gain 0.9
+    # room 0.9 # orbit 1 # pan sine,
+  struct "~ <t ~ t(5,8) ~>" $ s "hit"
+  # n 0 # speed (-1) # end 0.5
+  # pan "[0.4 0.7]/4" # cutoff 1200
+  ]
