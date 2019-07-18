@@ -459,3 +459,19 @@ p "marea25" $ stack [
   # n 0 # speed (-1) # end 0.5
   # pan "[0.4 0.7]/4" # cutoff 1200
   ]
+
+-- marea n.26 / 2019-07-18 / @tidalcycles 1.0.14
+
+p "marea26"
+  $ every 6 (trunc 0.75)
+  $ every 3 (within (0.25, 0.5) (shuffle 4))
+  $ every 5 (within (0, 0.25) (fast 1.5))
+  $ every 4 rev
+  $ overlay (s "drum:2(6,8,1)"
+             # pan (range 0.3 0.7 rand)
+             # gain 0.9)
+  $ s "[house*4, \
+    \ house:2(7,8),\
+    \ house:5(<4 6>,8,<0 1 2>),\
+    \ house:7(2,4,1)]"
+  # shape 0.2
