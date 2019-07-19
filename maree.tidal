@@ -475,3 +475,19 @@ p "marea26"
     \ house:5(<4 6>,8,<0 1 2>),\
     \ house:7(2,4,1)]"
   # shape 0.2
+
+-- marea n.27 / 2019-07-19 / @tidalcycles 1.0.14
+
+p "marea27" $ stack [
+  every 4 (chop 3 . rev)
+  $ note "0 0 0 4" # sound "sf"
+  # speed 0.333 # begin
+  (slow 10 (range 0 0.5 sine))
+  # cut 1,
+  s "cr:2(<2 3 3 4 6>,8)"
+  # hpf 6000 # gain 0.5,
+  s "[~ [~ psr]]*2"
+    |+| n (run "<5 7 6 3 2>")
+    # gain 0.7 # shape 0.3
+    # cutoff 1000
+  ]
