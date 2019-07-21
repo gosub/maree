@@ -491,3 +491,17 @@ p "marea27" $ stack [
     # gain 0.7 # shape 0.3
     # cutoff 1000
   ]
+
+-- marea n.28 / 2019-07-21 / @tidalcycles 1.0.14
+
+p "marea28" $ every 4
+  (jux (rev . (# gain 0.7))) $
+  stack [
+    every 2 (# up 4)
+      $ spin "<2 3 4>" $ sound "less",
+      spin "<3 4 6>" $ s "less:1",
+    every 3 ((# shape 0.3) . (# cutoff 800))
+      $ spin "<3 4 [3 4]>" $ s "less:3",
+    every 2 (chop $ choose [2, 4, 3])
+    $ spin "2 4 6" $ s "less:2"
+  ]
