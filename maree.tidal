@@ -505,3 +505,19 @@ p "marea28" $ every 4
     every 2 (chop $ choose [2, 4, 3])
     $ spin "2 4 6" $ s "less:2"
   ]
+
+-- marea n.29 / 2019-07-23 / @tidalcycles 1.0.14
+
+p "marea29" $ scramble "<3 2 4>"
+  $ trunc "<1 0.5 0.75 0.8 1 0.9>" $ stack [
+    s "bin(<3 5 4 3> ,8)",
+    slow 3 $ s "subroc3d"
+      # speed "[-0.4 0.1 0.2]/3" # cut 1,
+    every 3 (>| s "hh27*6") $ s "hh27*12",
+    struct "t <t [~ [t t]]> t t*3"
+      $ s "909" # speed "1 0.8 0.7 1",
+    n (run "<10 19 12 22 17>")
+    # s "industrial"
+    # cutoff "3000 2000 400 2500"
+  ] # cps ("<60 80>"/60/4)
+    # room "<0 0.2 0.1>"
